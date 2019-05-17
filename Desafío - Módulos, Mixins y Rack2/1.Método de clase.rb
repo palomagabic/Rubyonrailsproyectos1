@@ -8,14 +8,13 @@ class Alumno
 end
 
 def read_file(archivo)
-  @alumnos = alumnos
-  @alumnos = []
+  alumnos = []
   data = []
   File.open(archivo, 'r') { |file| data = file.readlines }
   data.each do |alumno|
-    @alumnos << Alumno.new(*ls)
+    alumnos << Alumno.new(*ls)
   end
-  print @alumnos
+  print alumnos
 
 end
 
