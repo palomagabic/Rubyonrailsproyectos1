@@ -1,21 +1,31 @@
 class Table
-  def initialize (name, day1, day2, day3, day4, day5)
-    @name = name
-    @day1 = day1
-    @day2 = day2
-    @day3 = day3
-    @day4 = day4
-    @day5 = day5
-  end
+    attr_accessor :name, :days
+    def initialize(name, *days)
+        @name = name
+        @days = days.map(&:to_i)
+    end
 
-  def mayor
-    if @day1 > @day2 and @day1 > @day3 and @day1 >
-
-
-
-  end
+    def mayor_valor
+        mayor = @days.max
+        puts "#{@name}: Mayor valor #{mayor} : Día #{@days.index(mayor)+1}"
+    end
+    
+    def promedio
+        return "Promedio recaudación #{@nombre} #{@days.sum / @days.count.to_f}"
+    end
 end
 
-data = []
-output = []
-File.open('casino.txt', 'r'){|file| data = file.readlines}
+file = File.open('casino.txt', 'r')
+data = file.readlines
+file.close
+
+casino = []
+data.each do |prod|
+    ls = prod.split(', ')
+    casino.push Table.new(*ls)
+end
+
+casino.each do |filter|
+    puts filter.mayor_valor
+    puts filter.promedio
+end
